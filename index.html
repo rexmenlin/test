@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="art.css">
+	</head>
+<body>
+
+
+
+<div id="app" class="container">
+
+
+    <h1 class="fw-light text-center text-lg-start mt-4 mb-0">AUO A.R.T. Gallery </h1>
+    <hr class="mt-2 mb-5">
+  
+
+  
+<label class="form-label">Select the ART Display</label>
+  <select class="form-select form-select-lg mb-3" aria-label="Default select example" @change="onDispChange($event)" v-cloak>
+    <option v-for="item in paintItems" v-bind:value="item.siteNo"  >{{ item.siteName }}</option>
+  </select>
+  
+  
+<div class="text-center">
+  <div v-show="loading" class="spinner-grow text-primary m-2" role="status" />
+</div>
+  
+  <div class="col-lg-3">
+  <button type="button" class="form-control btn btn-primary" v-on:click="sendComQiEvent(selectedItemObj.siteNo, -1)">Resume Playback</button>
+  </div>
+
+  
+    <div class="row text-center text-lg-start mt-3">
+
+      <div class="col-lg-3 col-md-4 col-6" v-for="item in selectedItemObj.paints" v-on:click="sendComQiEvent(selectedItemObj.siteNo, item.pno)">
+		<label class="form-label"  v-cloak>{{ item.pname }}</label>
+        <a href="#" class="d-block mb-4 h-100">
+          <img class="img-fluid img-thumbnail" v-bind:src="item.url" alt="">
+        </a>
+      </div>  
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.1.5/vue.global.min.js"></script>
+<script src="art.js"></script>
+</body>
+</html>
+
